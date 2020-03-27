@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="header(Title)">
+<link rel="icon" href="/images/armoiries.ico" />
+<link href="/webjars/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"/>
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+<!-- Bootstrap core CSS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+<!-- Material Design Bootstrap -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.5/css/mdb.min.css" rel="stylesheet">
+<link href="css/general.css" rel="stylesheet" type="text/css">
+<!-- JQuery -->
+
+<meta charset="UTF-8">
+<title th:text="${Title}"></title>
+</head>
+<head th:fragment="header-login(Title)">
+<link rel="icon" href="/images/armoiries.ico" />
+<link href="/webjars/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"/>
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+<!-- Bootstrap core CSS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+<!-- Material Design Bootstrap -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.5/css/mdb.min.css" rel="stylesheet">
+<link href="css/general.css" rel="stylesheet" type="text/css">
+<link href="css/login_form.css" rel="stylesheet" type="text/css">
+<!-- JQuery -->
+
+<meta charset="UTF-8">
+<title th:text="${Title}"></title>
+</head>
+<body>
+<!--Navbar -->
+<nav class="mb-1 navbar navbar-expand-lg navbar-dark indigo" th:fragment="navbar" id="top-section">
+  <a class="navbar-brand" href=""></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333"
+    aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
+    <ul class="navbar-nav mr-auto">
+      <li id="nav-item-accueil" class="nav-item">
+        <a class="nav-link" href="/Liste-Personnel">Accueil
+          <span class="sr-only">(current)</span>
+        </a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">Personnel
+        </a>
+        <div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
+          <a class="dropdown-item" href="/Liste-Personnel">Liste de personnel</a>
+          <a class="dropdown-item" href="/Liste-Personnel/Ajouter-Personnel">Ajouter personnel</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">Division
+        </a>
+        <div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
+          <a class="dropdown-item" href="/Divisions">Liste des divisions</a>
+          <a class="dropdown-item" href="/Ajouter-Division">Ajouter une division</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">Grade
+        </a>
+        <div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
+          <a class="dropdown-item" href="/Grades">Liste des grades</a>
+          <a class="dropdown-item" href="/Ajouter-Grade">Ajouter un grade</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">Service
+        </a>
+        <div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
+          <a class="dropdown-item" href="/Services">Liste des services</a>
+          <a class="dropdown-item" href="/Ajouter-Service">Ajouter un service</a>
+        </div>
+      </li>
+      <!-- <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">Budget
+        </a>
+        <div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
+          <a class="dropdown-item" href="/Budgets">Liste des budgets</a>
+          <a class="dropdown-item" href="/Ajouter-Budget">Ajouter un budget</a>
+        </div>
+      </li> -->
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">Demandes</a>
+          <div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
+          <a class="dropdown-item" href="/Demande-Conge">Congé annuel</a>
+          <a class="dropdown-item" href="/Demande-Conge-Maladie">Congé de maladie</a>
+          <a class="dropdown-item" href="/Demande-Authex">Autorisation exceptionnelle</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">Historiques
+        </a>
+        <div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
+          <a class="dropdown-item" href="/Historique-Conges">Historiques des congés annuels</a>
+          <a class="dropdown-item" href="/Conges-Maladie">Historiques des congés des maladies</a>
+          <a class="dropdown-item" href="/Authex">Historiques des Autorisations Exceptionnelles</a>
+        </div>
+      </li>
+    </ul>
+    <ul class="navbar-nav ml-auto nav-flex-icons">
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          <i class="fas fa-user"></i>
+        </a>
+        <div class="dropdown-menu dropdown-menu-right dropdown-default"
+          aria-labelledby="navbarDropdownMenuLink-333">
+          <a class="dropdown-item" href="/Parametres-Compte">Paramètres du compte</a>
+          <a class="dropdown-item text-white bg-danger" href="/perform_logout">Se déconnecter</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>
+<!--/.Navbar -->
+</body>
+</html>

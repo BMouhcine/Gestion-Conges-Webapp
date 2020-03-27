@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header('Congés des maladies')"></head>
+<body onload="AddDeleteEditMessage()">
+<!--Navbar -->
+<nav class="mb-1 navbar navbar-expand-lg navbar-dark bg-primary" th:replace="fragments/header :: navbar"></nav>
+<!--/.Navbar -->
+<div class="d-flex justify-content-center">
+<img src="/images/armoiries1.png" class="col-2" id="image" alt="User Icon"/>
+</div>
+<div class="alert alert-success d-none" id="AddMessage" style="cursor:pointer;" onclick="this.classList.add('d-none');">
+  <strong>A.E. ajoutée.</strong>
+</div>
+<div class="alert alert-danger d-none" id="DeleteMessage" style="cursor:pointer;" onclick="this.classList.add('d-none');">
+  <strong>A.E. supprimée.</strong>
+</div>
+<div class="alert alert-primary d-none" id="EditMessage" style="cursor:pointer;" onclick="this.classList.add('d-none');">
+  <strong>A.E. modifiée.</strong>
+</div>
+
+<div class="d-flex justify-content-center">
+	<div class="md-form col-4 d-flex justify-content-center">
+		<input type="text" id="form1" class="form-control" name="SearchField" onkeyup="SearchFunction()">
+		<label for="form1">Recherche</label>
+	</div>
+	<div class="md-form col-3">
+		<select class="browser-default custom-select col-4" id="SearchParam">
+		  <option value="" disabled selected> Par: </option>
+		  <option value="3">C.I.N.</option>
+		  <option value="4">NOM</option>
+		  <option value="5">PRÉNOM</option>
+		  <option value="11">MOTIF</option>
+		  
+	</select>
+	</div>
+</div>
+
+<div class="container">
+	<form action="/Authex/Modifier-Authex" method="POST" th:object="${authex}">
+		<table class="table table-hover" id="myTable">
+  <thead>
+    <tr>
+      <th scope="col"></th>
+      <th scope="col">#</th>
+      <th scope="col">#</th>
+      <th scope="col">C.I.N.</th>
+      <th scope="col">Nom</th>
+      <th scope="col">Prénom</th>
+      <th scope="col">Nombre de jours</th>
+      <th scope="col">Date de la demande</th>
+      <th scope="col">Date de début du congé</th>
+      <th scope="col">Date de la fin du congé</th>
+      <th scope="col">Date de la reprise du travail</th>
+      <th scope="col">Motif</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr th:each="obj: ${authex}" onclick="CheckHandle(this);" style="cursor:pointer;">
+	  <td>
+	  <div class="form-check">
+	  <input type="checkbox" name="checkPersonnel" class="form-check-input d-none" id="exampleCheck1" th:value="${obj[0]+'@'+obj[1]+'@'+obj[2]}">
+	  </div>
+	  </td>
+      <td th:each="e: ${obj}" th:text="${e}"></td>
+    </tr>
+  </tbody>
+</table>
+		<div class="container col-6">
+			<input name="submit" id="Modifier" type="submit" class="btn btn-brown disabled" value="Modifier">
+			<input name="submit" id="Supprimer" type="submit" class="btn btn-danger disabled" value="Supprimer">
+			<a href="/Demande-Authex"><button type="button" class="btn btn-brown">Demander une A.E.</button></a>
+		</div>
+	</form>
+</div>
+<div th:replace="fragments/footer :: footer-with-privateJs"></div>
+<script>
+function SearchFunction() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("form1");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+
+  searchParam = document.getElementById("SearchParam").value;
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[searchParam]
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+</script>
+<div class="fixed-action-btn smooth-scroll d-flex flex-row-reverse" style="bottom: 45px; right: 24px;">
+
+  <a href="#top-section" class="btn-floating btn-lg waves-effect waves-light">
+    <i class="fas fa-arrow-alt-circle-up"></i>
+  </a>
+</div>
+</body>
+</html>

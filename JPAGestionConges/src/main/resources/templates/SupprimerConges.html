@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header('Supprimer un congé')"></head>
+<body>
+<!--Navbar -->
+<nav class="mb-1 navbar navbar-expand-lg navbar-dark bg-primary" th:replace="fragments/header :: navbar"></nav>
+<!--/.Navbar -->
+<div class="d-flex justify-content-center">
+<img src="/images/armoiries1.png" class="col-2" id="image" alt="User Icon"/>
+</div>
+<pre class="container bg-danger text-white text-center col-4">Confirmer la suppression du congé.</pre>
+<div class="container col-5">
+	<form action="/perform_delete_conge" method="POST">
+		<label for="cin">C.I.N. : </label>
+		<input readonly required class="form-control" type="text" th:value="${cin}" name="cin">
+		<label for="nom">Nom : </label>
+		<input readonly required class="form-control" type="text" th:value="${Nom}" name="nom">
+		<label for="prenom">Prénom : </label>
+		<input readonly required class="form-control" type="text" th:value="${prenom}" name="prenom">
+		<label for="date_demande">Date de la demande: </label>
+		<input readonly required class="form-control" type="text" th:value="${date_demande}" name="date_demande">
+		<label for="date_debut">Date début du congé: </label>
+		<input readonly required class="form-control" type="text" th:value="${date_debut}" name="date_debut" >
+		<label for="date_reprise">Date de la fin du travail: </label>
+		<input readonly required class="form-control" type="text" th:value="${date_fin}" name="date_fin" >
+		<label for="date_reprise">Date de la reprise du travail: </label>
+		<input readonly required class="form-control" type="text" th:value="${date_reprise}" name="date_reprise">
+		<label for="nombre_jours">Nombre de jours: </label>
+		<input readonly required class="form-control" type="text" th:value="${nombre_jours}" name="nombre_jours">
+		<div class="container col-4">
+			<input name="submit" type="submit" class="btn btn-danger" value="Supprimer">
+		</div>
+		
+	</form>
+</div>
+<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header('Demande d\'un congé')"></head>
+<body onload="DateDemandeToday();AddDeleteEditMessage();DateDebutToday();">
+<!--Navbar -->
+<nav class="mb-1 navbar navbar-expand-lg navbar-dark bg-primary" th:replace="fragments/header :: navbar"></nav>
+<!--/.Navbar -->
+<div class="d-flex justify-content-center">
+<img src="/images/armoiries1.png" class="col-2" id="image" alt="User Icon"/>
+</div>
+<div class="alert alert-warning d-none" id="NbrJrsMessage" style="cursor:pointer;" onclick="this.classList.add('d-none');">
+  <strong>Nombre de jours permit dépassé.</strong>
+</div>
+<div class="container col-6">
+	<form action="" method="POST" th:object="${congesMaladie}">
+	<!-- <input required id="id" class="form-control d-none" type="text" name="id"> -->
+	<label for="demandeur">Demandeur: </label>
+		<select required class="form-control" id="Personnel" name="Demandeur">
+  			<option value="">Séléctionner un demandeur</option>
+  			<option th:each="e: ${ListePersonnel}" th:value="${e[0]}">
+  				<th:span th:each="i: ${e}" th:text="${i}+' | '"></th:span>
+  			</option>
+		</select>
+		<label for="date_demande">Date de la demande: </label>
+		<input required id="DateDemande" class="form-control" type="date" value="2016-01-01" th:field="*{date_demande}" name="date_demande" >
+		<label for="date_debut">Date du début du congé: </label>
+		<input required id="DateDebut" onchange="setNombreDeJours()" class="form-control" type="date" th:field="*{date_debut}" name="date_debut">
+		<label for="date_reprise">Date de la fin du congé: </label>
+		<input required id="DateFin" onchange="setNombreDeJours()" class="form-control" type="date" th:field="*{date_fin}" name="date_fin">
+		<label for="date_reprise">Date de la reprise du travail: </label>
+		<input required id="DateReprise" class="form-control" type="date" th:field="*{date_reprise}" name="date_reprise"
+		onclick="CheckDebutDateNotEmpty()" onchange="setNombreDeJours()" oninput='date_reprise.setCustomValidity(date_debut.value >= date_fin.value ? "Séléctionnez une date ultérieure que la date du début du congé." : "");'>
+		<label for="nombre_jours">Nombre de jours: </label>
+		<input required class="form-control" th:field="*{nombre_jours}" id="nombre_jours" name="nombre_jours" placeholder="Nombre de jours">
+		<div class="container col-4">
+			<input name="submit" type="submit" class="btn btn-brown">
+		</div>
+		
+	</form>
+</div>
+<div th:replace="fragments/footer :: footer-with-privateJs"></div>
+</body>
+</html>

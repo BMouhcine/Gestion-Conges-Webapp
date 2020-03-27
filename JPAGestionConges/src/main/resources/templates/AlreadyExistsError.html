@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header('Page d\'erreur')"></head>
+<body>
+<!--Navbar -->
+<nav class="mb-1 navbar navbar-expand-lg navbar-dark bg-primary" th:replace="fragments/header :: navbar"></nav>
+<!--/.Navbar -->
+<div class="d-flex justify-content-center">
+<img src="/images/armoiries1.png" class="col-3" id="image" alt="User Icon"/>
+</div>
+<div class="d-flex justify-content-center">
+<pre class="container bg-danger text-warning text-center col-8">Oups. l'élément :
+<span class="text-white" th:text="'C.I.N.: '+${elementAlreadyExistsCIN}"></span>
+<span class="text-white" th:text="'Nom: '+${elementAlreadyExistsNom}"></span>
+<span class="text-white" th:text="'Prénom: '+${elementAlreadyExistsPrenom}"></span> 
+ est déjà existant !</pre>
+</div>
+<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>

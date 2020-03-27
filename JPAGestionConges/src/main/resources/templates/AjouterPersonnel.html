@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header('Ajouter un personnel')"></head>
+<body onload="function();">
+<!--Navbar -->
+<nav class="mb-1 navbar navbar-expand-lg navbar-dark bg-primary" th:replace="fragments/header :: navbar"></nav>
+<!--/.Navbar -->
+<div class="d-flex justify-content-center">
+<img src="/images/armoiries1.png" class="col-2" id="image" alt="User Icon"/>
+</div>
+<div class="container col-6">
+	<form action="/perform_add" method="POST" th:object="${personnel}">
+		<input required class="form-control" type="text" onkeyup="this.value = this.value.toUpperCase();" th:field="*{Nom}" name="Nom" placeholder="Nom"><br/>
+		<input required class="form-control" type="text" th:field="*{Prenom}" name="Prenom" placeholder="Prénom"><br/>
+		<input required class="form-control" type="text" th:field="*{CIN}" name="CIN" placeholder="C.I.N."><br/>
+		<!-- <input required class="form-control" type="text" th:field="*{Grade}" name="Grade" placeholder="Grade"> -->
+		<select required name="gradeSelected" class="form-control" id="gradesDropList">
+			<option disabled selected value="">Selectionner un grade</option>
+			<option th:each="e: ${grades}" th:text="${e}" th:value="${e}"></option>
+		</select><br/>
+<!-- <input required class="form-control" type="text" th:field="*{Division}" name="Division" placeholder="Division"><br/> -->
+		<select required name="divisionSelected" class="form-control" id="divisionsDropList">
+			<option disabled selected value="">Selectionner une division</option>
+			<option th:each="e: ${divisions}" th:text="${e}" th:value="${e}"></option>
+		</select><br/>
+		<select required name="serviceSelected" class="form-control" id="divisionsDropList">
+			<option disabled selected value="">Selectionner un service</option>
+			<option th:each="e: ${services}" th:text="${e}" th:value="${e}"></option>
+		</select><br/>
+		<!-- <input required class="form-control" type="text" th:field="*{Service}" name="Service" placeholder="Service"><br/> -->
+		<select required name="budgetSelected" class="form-control d-none" id="divisionsDropList">
+			<option disabled selected value="">Selectionner un budget</option>
+			<option th:each="e: ${budgets}" th:text="${e}" th:value="${e}"></option>
+				<!-- <option th:each="e: ${budgets}" th:text="${e}" th:value="${e}"></option> -->
+			<option selected th:each="e: ${budgets}" th:text="${e}" th:value="TestBudgetInstance"></option>
+		</select><br/>
+		<!-- <input required class="form-control" type="text" th:field="*{Budget}" name="Budget" placeholder="Budget"><br/> -->
+		<input required class="form-control" type="number" th:field="*{jours_restants}" name="jours_restants" placeholder="jours_restants"><br/>
+		<div class="container col-4">
+			<input name="submit" type="submit" class="btn btn-brown"/>
+		</div>
+	</form>
+</div>
+<div class="fixed-action-btn smooth-scroll d-flex flex-row-reverse" style="bottom: 45px; right: 24px;">
+
+  <a href="#top-section" class="btn-floating btn-lg waves-effect waves-light">
+    <i class="fas fa-arrow-alt-circle-up"></i>
+  </a>
+</div>
+<div th:replace="fragments/footer :: footer"></div>
+
+</body>
+</html>

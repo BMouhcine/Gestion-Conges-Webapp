@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header('Paramètres du compte')"></head>
+<body onload="AddDeleteEditMessage();">
+<!--Navbar -->
+<nav class="mb-1 navbar navbar-expand-lg navbar-dark bg-primary" th:replace="fragments/header :: navbar"></nav>
+<!--/.Navbar -->
+<div class="d-flex justify-content-center">
+<img src="/images/armoiries1.png" class="col-2" id="image" alt="User Icon"/>
+</div>
+<div class="alert alert-danger d-none" id="DeleteMessage" style="cursor:pointer;" onclick="this.classList.add('d-none');">
+  <strong>Mot de passe ancien incorrect.</strong>
+</div>
+
+<div class="container col-5">
+	<form action="/perform_edit_account" method="POST" th:object="${user}" oninput='passwordConfirm.setCustomValidity(passwordConfirm.value != password.value ? "Les Mots de passes sont incompatibles." : "");'>
+		<input required class="form-control d-none" type="text" th:field="*{id}" name="id"><br/>
+		<label for="username">Nom d'utilisateur: </label>
+		<input required class="form-control" type="text" th:field="*{username}" name="username" placeholder="Nom d'utilisateur"><br/>
+		<label for="oldPassword">Ancien mot de passe: </label>
+		<input required class="form-control" type="password" name="oldPassword" placeholder="Mot de passe ancien"><br/>
+		<label for="password">Nouveau mot de passe: </label>
+		<input required class="form-control" type="password" th:field="*{password}" name="password" placeholder="Mot de passe"><br/>
+		<label for="passwordConfirm">Confirmation du nouveau mot de passe: </label>
+		<input required class="form-control" type="password" name="passwordConfirm" placeholder="Confirmation du Mot de passe"><br/>
+		<div class="container col-4">
+			<input name="submit" type="submit" class="btn btn-brown">
+		</div>
+		
+	</form>
+	
+</div>
+<div th:replace="fragments/footer :: footer-with-privateJs"></div>
+</body>
+</html>

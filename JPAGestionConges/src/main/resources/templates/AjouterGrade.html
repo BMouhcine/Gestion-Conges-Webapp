@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header('Ajouter un grade')"></head>
+<body onload="DateDemandeToday();AddDeleteEditMessage();DateDebutToday();">
+<!--Navbar -->
+<nav class="mb-1 navbar navbar-expand-lg navbar-dark bg-primary" th:replace="fragments/header :: navbar"></nav>
+<!--/.Navbar -->
+<div class="d-flex justify-content-center">
+<img src="/images/armoiries1.png" class="col-2" id="image" alt="User Icon"/>
+</div>
+<div class="container col-6">
+	<form action="" method="POST" th:object="${grade}">
+		<label for="NomGrade">Nom du grade: </label>
+		<input required class="form-control" th:field="*{nom_grade}" id="NomGrade" name="NomGrade">
+		<div class="container col-4">
+			<input name="submit" type="submit" class="btn btn-brown">
+		</div>
+		
+	</form>
+</div>
+<div th:replace="fragments/footer :: footer-with-privateJs"></div>
+</body>
+</html>

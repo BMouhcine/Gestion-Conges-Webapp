@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header('Modifier un personnel')"></head>
+<body>
+<!--Navbar -->
+<nav class="mb-1 navbar navbar-expand-lg navbar-dark bg-primary" th:replace="fragments/header :: navbar"></nav>
+<!--/.Navbar -->
+<div class="d-flex justify-content-center">
+<img src="/images/armoiries1.png" class="col-2" id="image" alt="User Icon"/>
+</div>
+<div class="container col-5">
+	<form action="/perform_edit" method="POST" th:object="${personnel}">
+	<label for="C.I.N.:">C.I.N. : </label>
+		<input required class="form-control" type="text" th:field="*{CIN}" name="CIN" placeholder="C.I.N." readonly>
+	<label for="Nom">Nom : </label>
+		<input required class="form-control" type="text" th:field="*{Nom}" name="Nom" placeholder="Nom">
+	<label for="Nom">Prénom : </label>
+		<input required class="form-control" type="text" th:field="*{Prenom}" name="Prenom" placeholder="Prénom">
+	<label for="Grade">Grade : </label>
+		<select required name="gradeSelected" class="form-control" id="gradesDropList">
+			<option th:each="e: ${grades}" th:text="${e}" th:value="${e}"></option>
+		</select>
+		<!-- <input required class="form-control" type="text" th:field="*{Grade}" name="Grade" placeholder="Grade"> -->
+	<label for="Division">Division : </label>
+<!-- <input required class="form-control" type="text" th:field="*{Division}" name="Division" placeholder="Division"> -->
+		<select required name="divisionSelected" class="form-control" id="divisionsDropList">
+			<option th:each="e: ${divisions}" th:text="${e}" th:value="${e}"></option>
+		</select>
+	<label for="Service">Service : </label>
+		<!-- <input required class="form-control" type="text" th:field="*{Service}" name="Service" placeholder="Service"> -->
+		<select required name="serviceSelected" class="form-control" id="servicesDropList">
+			<option th:each="e: ${services}" th:text="${e}" th:value="${e}"></option>
+		</select>
+<!-- 	<label for="Budget">Budget : </label> -->
+		<select required name="budgetSelected" class="form-control d-none" id="budgetsDropList">
+<!-- 			<option th:each="e: ${budgets}" th:text="${e}" th:value="${e}"></option> -->
+			<option selected th:each="e: ${budgets}" th:text="${e}" th:value="TestBudgetInstance"></option>
+		</select>
+		<!-- <input required class="form-control" type="text" th:field="*{Budget}" name="Budget" placeholder="Budget"> -->
+	<label for="jours_restants">Nombre de jours restants : </label>
+		<input required class="form-control" type="number" min="0" max="44" th:field="*{jours_restants}" name="jours_restants">
+		<div class="container col-4">
+			<input name="submit" type="submit" class="btn btn-brown">
+		</div>
+		
+	</form>
+	
+</div>
+<div th:replace="fragments/footer :: footer"></div>
+<script>
+document.getElementById("divisionsDropList").value = "[[${Division}]]";
+document.getElementById("gradesDropList").value = "[[${Grade}]]";
+document.getElementById("servicesDropList").value = "[[${Service}]]";
+document.getElementById("budgetsDropList").value = "[[${Budget}]]";
+</script>
+<div class="fixed-action-btn smooth-scroll d-flex flex-row-reverse" style="bottom: 45px; right: 24px;">
+
+  <a href="#top-section" class="btn-floating btn-lg waves-effect waves-light">
+    <i class="fas fa-arrow-alt-circle-up"></i>
+  </a>
+</div>
+</body>
+</html>

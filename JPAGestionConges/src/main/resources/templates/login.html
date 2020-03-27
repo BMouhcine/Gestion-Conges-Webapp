@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header-login('Accueil | Connexion')"></head>
+<body>
+<div class="wrapper">
+  <div id="">
+    <div class="">
+
+    </div>
+<div class="text-center p-5">
+<img src="/images/armoiries1.png" class="col-5" id="image" alt="User Icon"/>
+    <form action="" method="POST" th:object="${user}">
+      <input required class="form-control" type="text" th:field="*{username}" id="login" name="username" placeholder="Nom d'utilisateur"/>
+      <br/><br/><input required class="form-control" type="password" th:field="*{password}" id="password" name="password" placeholder="Mot de passe"/>
+      <br/><br/><br/><input type="submit" class="btn btn-primary my-4 btn-block" value="Connexion"/>
+    </form>
+</div>
+</div>
+  </div>
+<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>

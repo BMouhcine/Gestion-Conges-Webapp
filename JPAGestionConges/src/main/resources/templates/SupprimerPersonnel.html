@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header('Paramètres du compte')"></head>
+<body>
+<!--Navbar -->
+<nav class="mb-1 navbar navbar-expand-lg navbar-dark bg-primary" th:replace="fragments/header :: navbar"></nav>
+<!--/.Navbar -->
+<div class="d-flex justify-content-center">
+<img src="/images/armoiries1.png" class="col-2" id="image" alt="User Icon"/>
+</div>
+<pre class="container bg-danger text-white text-center col-4">Confirmer la suppression du personnel.</pre>
+<div class="container col-5">
+	<form action="/perform_delete" method="POST" th:object="${personnel}">
+		<input readonly required class="form-control" type="text" th:field="*{Nom}" name="Nom" placeholder="Nom"><br/>
+		<input readonly required class="form-control" type="text" th:field="*{Prenom}" name="Prenom" placeholder="Prénom"><br/>
+		<input readonly required class="form-control" type="text" th:field="*{CIN}" name="CIN" placeholder="C.I.N."><br/>
+		<input readonly required class="form-control" type="text" th:field="*{Grade}" name="Grade" placeholder="Grade"><br/>
+		<input readonly required class="form-control" type="text" th:field="*{Division}" name="Division" placeholder="Division"><br/>
+		<input readonly required class="form-control" type="text" th:field="*{Service}" name="Service" placeholder="Service"><br/>
+		<input readonly required class="form-control d-none" type="text" th:field="*{Budget}" name="Budget" placeholder="Budget">
+		<input readonly required class="form-control" type="number" th:field="*{jours_restants}" name="jours_restants" placeholder="Jours restants"><br/>
+		<div class="container col-4">
+			<input name="submit" type="submit" class="btn btn-danger" value="Supprimer">
+		</div>
+		
+	</form>
+</div>
+<div th:replace="fragments/footer :: footer"></div>
+<div class="fixed-action-btn smooth-scroll d-flex flex-row-reverse" style="bottom: 45px; right: 24px;">
+
+  <a href="#top-section" class="btn-floating btn-lg waves-effect waves-light">
+    <i class="fas fa-arrow-alt-circle-up"></i>
+  </a>
+</div>
+</body>
+</html>
